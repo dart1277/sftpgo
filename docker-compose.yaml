@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  sftp:
+    build:
+      context: sftpgo
+      args:
+        UID: 1000
+        GID: 1000
+        UNAME: user
+    container_name: sftp
+    ports:
+      - "2022:2022"
+      - "8090:8080"
+    volumes:
+      - ./app:/app:rw
+    networks:
+      - main
+
+networks:
+  main:
+    driver: bridge
